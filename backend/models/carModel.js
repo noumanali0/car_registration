@@ -7,10 +7,6 @@ const carSchema = mongoose.Schema({
   make: "string",
   registeration: Number,
   category: "string",
-  addedBy: {
-    type: ObjectId,
-    ref: "User",
-  },
 });
 
 const Car = mongoose.model("Car", carSchema);

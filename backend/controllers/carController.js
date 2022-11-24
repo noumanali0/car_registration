@@ -1,17 +1,10 @@
 const Car = require("../models/carModel");
 
 const getAllCars = (req, res) => {
-  //   Car.find({}, (err, cars) => {
-  //     if (err) return res.json(err.message);
-  //     return res.json(cars);
-  //   });
-
-  let cars = Car.find({ addedBy: req.user.user._id })
-    .populate("addedBy", "name")
-    .exec((err, cars) => {
-      if (err) res.json(err.message);
-      res.json(cars);
-    });
+  Car.find({}, (err, cars) => {
+    if (err) return res.json(err.message);
+    return res.json(cars);
+  });
 };
 
 const addCar = (req, res) => {
