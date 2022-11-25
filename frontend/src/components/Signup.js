@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axiosInstance from "../axios/axiosInstance";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -110,6 +110,9 @@ const Signup = () => {
                 <small id="passworderror" className="text-danger form-text">
                   {passwordError}
                 </small>
+              </div>
+              <div className="form-group">
+                <Link to="/login">Already have an account ?</Link>
               </div>
 
               <button type="submit" className=" my-2 btn btn-primary">

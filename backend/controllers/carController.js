@@ -8,13 +8,13 @@ const getAllCars = (req, res) => {
 };
 
 const addCar = (req, res) => {
-  const { name, model, make, registeration } = req.body;
+  const { name, model, make, registeration, category } = req.body;
   const car = {
     name,
     model,
     make,
     registeration,
-    addedBy: req.user.user,
+    category,
   };
   Car.create(car, (err, car) => {
     if (err) return res.json(err.message);
@@ -24,6 +24,7 @@ const addCar = (req, res) => {
 
 const deleteCar = (req, res) => {
   const { id } = req.body;
+  console.log(id);
   Car.findByIdAndDelete(id, (err, car) => {
     if (err) return res.json(err.message);
     return res.json("car deleted");

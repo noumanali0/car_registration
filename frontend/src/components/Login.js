@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import axiosInstance from "../axios/axiosInstance";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -10,10 +13,12 @@ const Login = () => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
-  const loginSubmit = (e) => {
+  const loginSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Login Data", loginData);
+    const token = await axiosInstance.post("/login", loginData);
+    localStorage.setItem("login", token.data);
+    navigate("/");
+    window.location.reload();
   };
 
   return (
@@ -46,7 +51,9 @@ const Login = () => {
                   onChange={handleChange}
                 />
               </div>
-
+              <div className="form-group">
+                <Link to="/signup">New User ?</Link>
+              </div>
               <button type="submit" className=" my-2 btn btn-primary">
                 Login
               </button>
